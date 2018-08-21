@@ -1,0 +1,14 @@
+---
+
+- name: Gather facts and create table
+  hosts: poc_ios
+  gather_facts: no
+
+  tasks:
+    - name: Get facts info from device
+      ios_facts:
+        gather_subset:
+          - hardware
+
+    - name: Create MD file
+      template: src=ios_facts_table.j2 dest=files/ios_facts_table.md
